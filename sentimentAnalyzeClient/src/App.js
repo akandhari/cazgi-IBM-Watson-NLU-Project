@@ -4,7 +4,7 @@ import EmotionTable from './EmotionTable.js';
 import React from 'react';
 import axios from 'axios';
 
-const instance = axios.create({ baseURL: 'http://localhost:8080' })
+// const instance = axios.create({ baseURL: 'http://localhost:8080' })
 
 class App extends React.Component {
   state = {
@@ -48,7 +48,7 @@ class App extends React.Component {
     } else {
       url = url + "/text/sentiment?text=" + document.getElementById("textinput").value;
     }
-    ret = instance.get(url);
+    ret = axios.get(url);
     ret.then((response) => {
 
       //Include code here to check the sentiment and fomrat the data accordingly
@@ -78,7 +78,7 @@ class App extends React.Component {
     } else {
       url = url + "/text/emotion/?text=" + document.getElementById("textinput").value;
     }
-    ret = instance.get(url);
+    ret = axios.get(url);
     ret.then((response) => {
       this.setState({ sentimentOutput: <EmotionTable emotions={response.data} /> });
     });
